@@ -22,8 +22,6 @@ gulp.task('imageMin', () => {
     .pipe(gulp.dest('./dest/images'));
 });
 
-
-
 gulp.task('js', () => {
   return gulp.src([
     './src/js/resources.js', 
@@ -39,3 +37,15 @@ gulp.task('js', () => {
     .pipe(gulp.dest('./dest/js'))
 });
 
+gulp.task('copyHTML', () => {
+  return gulp.src('./index.html')
+    .pipe(gulp.dest('./dest'))
+});
+
+gulp.task('watch', () =>{
+  gulp.watch('./src/css/**/*.css', gulp.series('styles'));
+  gulp.watch('./src/*.html', gulp.series('copyHTML'));
+  gulp.watch('./src/js/*.js', gulp.series('js'));
+})
+
+gulp.task('all', gulp.parallel('js', 'imageMin', 'styles', 'copyHTML'));
