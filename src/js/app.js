@@ -1,6 +1,6 @@
 class Enemy  {
   constructor() {
-    this.sprite = 'images/enemy-bug.png';
+    this.sprite = 'src/images/enemy-bug.png';
     this.speed = Math.floor(Math.random() * 200) + 100;   
     this.reset();
   };
@@ -31,7 +31,7 @@ class Enemy  {
 
 class Player {
   constructor() {
-    this.sprite = 'images/char-boy.png';
+    this.sprite = 'src/images/char-boy.png';
     this.reset();
   };
 
