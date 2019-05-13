@@ -4,6 +4,7 @@ const cleanCSS = require('gulp-clean-css');
 const imagemin = require('gulp-imagemin');
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
  
 gulp.task('styles', () => {
   return gulp.src('./src/**/*.css')
@@ -34,6 +35,7 @@ gulp.task('js', () => {
     plugins: ["@babel/plugin-proposal-class-properties"]
     }))
     .pipe(concat('main.js'))
+    .pipe(uglify())
     .pipe(gulp.dest('./dest/js'))
 });
 
