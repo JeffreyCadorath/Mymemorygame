@@ -13,7 +13,7 @@ gulp.task('styles', () => {
       browsers: ['last 2 versions'],
       cascade: false
     }))
-    .pipe(gulp.dest('./dest/css'))
+    .pipe(gulp.dest('./dest'))
 });
 
 gulp.task('imageMin', () => {
@@ -46,6 +46,6 @@ gulp.task('watch', () =>{
   gulp.watch('./src/css/**/*.css', gulp.series('styles'));
   gulp.watch('./src/*.html', gulp.series('copyHTML'));
   gulp.watch('./src/js/*.js', gulp.series('js'));
-})
+});
 
 gulp.task('all', gulp.parallel('js', 'imageMin', 'styles', 'copyHTML'));
