@@ -1,6 +1,6 @@
 class Enemy  {
   constructor() {
-    this.sprite = 'src/images/enemy-bug.png';
+    this.sprite = 'dest/images/enemy-bug.png';
     this.speed = Math.floor(Math.random() * 200) + 100;   
     this.reset();
   };
@@ -8,18 +8,18 @@ class Enemy  {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
   
-  update = function(dt) {     
+  update(dt) {     
     this.x += this.speed * dt;
     if (this.x > 510) {
       this.reset();
     };
   };
 
-  render = function() {
+  render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   };
 
-  reset = function() {
+  reset() {
     // These are the possible position properties for each enemy
     let startingX = [-100, -75, -50, -25];
     let startingY = [60, 140, 220];
@@ -31,13 +31,13 @@ class Enemy  {
 
 class Player {
   constructor() {
-    this.sprite = 'src/images/char-boy.png';
+    this.sprite = 'dest/images/char-boy.png';
     this.reset();
   };
 
   lifeCounter = 3;
   
-  update = function() {
+  update() {
     //Check if player reached the end
     if (this.y === -20) {
       this.levelCounter();
@@ -46,7 +46,7 @@ class Player {
       this.checkCollision();
   };
   
-  checkCollision = function() {
+  checkCollision() {
     // Check whether enemy hits player
     for (let i = 0; i < allEnemies.length; i++ ) {
       let enemy = allEnemies[i];
@@ -62,11 +62,11 @@ class Player {
     };
   };
 
-  render = function() {
+  render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   };
 
-  handleInput = function(keyPress) {
+  handleInput(keyPress) {
     // Tiles are spaced 100 by 80
     
     // top left is 0, -20
@@ -96,7 +96,7 @@ class Player {
 
   counter = 1;
   
-  levelCounter = function() {
+  levelCounter() {
     if(this.y === -20) {
       this.counter;
       this.counter++;
@@ -104,14 +104,14 @@ class Player {
     }
   };
 
-  lifeCount = function() {
+  lifeCount() {
     this.lifeCounter;
     this.lifeCounter--
     document.querySelector('.lives').textContent = 
     `Lives: ${this.lifeCounter}`
   };
 
-  resetGame = function() {
+  resetGame() {
       if(document.querySelector('.level').textContent === `Lives: 0`) {
         document.querySelector('.lives').textContent = `Lives: 3`;
         document.querySelector('.level').textContent = `Level 1`
@@ -119,7 +119,7 @@ class Player {
   };
 
 
-  reset = function() {
+  reset() {
     //starts character at determined location
     this.x = 200;
     this.y = 380;  
